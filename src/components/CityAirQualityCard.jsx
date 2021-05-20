@@ -11,25 +11,25 @@ const CityAirQualityCard = ({ airQualityData, city, handleAddToChart, selectedFo
   <CardContainer>
     <div className="row">
       <div className="col-12">
-        <Text className="d-block" size="15px" weight="300">
+        <Text className="d-block" size="15" weight="300">
           CITY
         </Text>
-        <Text size="25px" weight="600">
+        <Text size="25" weight="600">
           {city}
         </Text>
       </div>
       <div className="col-12">
-        <Text size="15px" weight="300">
+        <Text size="15" weight="300">
           Updated : &nbsp;
         </Text>
-        <Text size="15px" weight="600">
+        <Text size="15" weight="600">
           <TimeAgo date={airQualityData[city].date} />
         </Text>
       </div>
     </div>
     <div className="row mt-4">
       <div className="col-12" align="center">
-        <Text size="15px" weight="300">
+        <Text size="15" weight="300">
           AIR Quality
         </Text>
       </div>
@@ -53,7 +53,7 @@ const CityAirQualityCard = ({ airQualityData, city, handleAddToChart, selectedFo
           borderRadius: 100,
         }}
       >
-        <Text size="50px" weight="600">
+        <Text size="40" mSize="30" weight="600">
           {airQualityData[city].aqiArray[0]}
         </Text>
       </div>
@@ -64,7 +64,9 @@ const CityAirQualityCard = ({ airQualityData, city, handleAddToChart, selectedFo
           }
           onClick={() => handleAddToChart(city)}
         >
-          {selectedForChart.includes(city) ? 'REMOVE FROM CHART' : 'ADD TO CHART'}
+          <Text size="16" weight="450" color="inherit">
+            {selectedForChart.includes(city) ? 'REMOVE FROM CHART' : 'ADD TO CHART'}
+          </Text>
         </Button>
       </div>
     </div>
@@ -78,7 +80,6 @@ const CardContainer = styled.div`
   transition: linear 300ms;
   :hover {
     background-color: #fcfcfc;
-
     -webkit-box-shadow: 3px 3px 5px 6px #ccc; /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
     -moz-box-shadow: 3px 3px 5px 6px #ccc; /* Firefox 3.5 - 3.6 */
     box-shadow: 3px 3px 5px 6px #ccc;
@@ -89,7 +90,6 @@ const Button = styled.div`
   margin: auto;
   padding: 8px 20px;
   border-radius: 50px;
-  /* color: #fff; */
 `;
 
 export default CityAirQualityCard;

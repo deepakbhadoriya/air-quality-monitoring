@@ -4,10 +4,9 @@ import CityAirQualityCard from './components/CityAirQualityCard';
 import Loading from './components/Loading';
 import Header from './components/Header';
 import Chart from './components/Chart';
-import formatData from './utils/formatData';
+import { formatData } from './utils/formatData';
+import { socket } from './data/socketConnection';
 import './App.css';
-
-var exampleSocket = new WebSocket('wss://city-ws.herokuapp.com/');
 
 function App() {
   const [airQualityData, setAirQualityData] = useState({});
@@ -15,11 +14,15 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    exampleSocket.onmessage = function (event) {
+    socket.onmessage = (event) => {
       handleDataUpdate(JSON.parse(event.data));
     };
+    socket.onerror = () => {
+      console.log('Connection Error');
+      setIsLoading(true);
+    };
     return () => {
-      exampleSocket.close();
+      socket.close();
     };
   }, []);
 
@@ -39,8 +42,7 @@ function App() {
       <Header />
       <div className="container">
         <div className="row">
-          <div className="col-1" />
-          <div className="col-10 my-5">
+          <div className="col-12 my-5">
             {!isLoading && selectedForChart.length !== 0 && (
               <Chart selectedForChart={selectedForChart} airQualityData={airQualityData} />
             )}
@@ -49,9 +51,8 @@ function App() {
             <Loading />
           ) : (
             Object.keys(airQualityData).map((city) => (
-              <div className="col-3 mb-4">
+              <div className="col-lg-3 col-md-4 col-sm-6 col-12 mb-4" key={city}>
                 <CityAirQualityCard
-                  key={city}
                   city={city}
                   airQualityData={airQualityData}
                   selectedForChart={selectedForChart}

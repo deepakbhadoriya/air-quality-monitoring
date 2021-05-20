@@ -1,5 +1,16 @@
 // Increase or Decrease for less or more AQI Record
-const MAX_AQI_RECORD = 10;
+export const MAX_AQI_RECORD = 15;
+
+//  Generate chart x-axis labels
+export const chartXAxesLabels = () => {
+  const result = [];
+  let n = 0;
+  while (n < MAX_AQI_RECORD) {
+    n++;
+    result.push(n);
+  }
+  return result;
+};
 
 // Updates the city AQI Array limit given by MAX_AQI_RECORD
 const updateCityAQIArray = (cityAQIArray, newCityAqi) => {
@@ -9,7 +20,7 @@ const updateCityAQIArray = (cityAQIArray, newCityAqi) => {
 };
 
 // Converting array data in object so don't have to iterate over city array to update new data
-const formatData = (prevData, newData) => {
+export const formatData = (prevData, newData) => {
   let tempData = {};
   const date = new Date();
   newData.forEach((city) => {
@@ -22,5 +33,3 @@ const formatData = (prevData, newData) => {
 
   return { ...prevData, ...tempData };
 };
-
-export default formatData;

@@ -1,16 +1,24 @@
 import React from 'react';
+import styled from 'styled-components';
 
 const Header = () => (
-  <div
-    style={{ background: 'url(https://i.postimg.cc/ZnHTP71s/aircraft-airplane-boat-1575833.jpg)' }}
-    class="page-holder bg-cover"
-  >
-    <div class="container py-5">
-      <header class="text-center text-white py-5">
-        <h1 class="display-4 font-weight-bold mb-4">Air Quality Monitor</h1>
+  <HeaderContainer className="page-holder bg-cover">
+    <div className="container py-5">
+      <header className="text-center text-white py-5">
+        <h1 className="display-4 font-weight-bold mb-4">Air Quality Monitor</h1>
       </header>
     </div>
-  </div>
+  </HeaderContainer>
 );
+
+const HeaderContainer = styled.div`
+  background: #1a2980; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #26d0ce, #1a2980); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #26d0ce,
+    #1a2980
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+`;
 
 export default Header;
